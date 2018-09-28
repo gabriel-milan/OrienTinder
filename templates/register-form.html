@@ -1,0 +1,24 @@
+<h1>Registration</h1>
+{% if form_type == 'student' %}
+<form action="/register/student" method="post">
+{% else %}
+<form action="/register/professor" method="post">
+{% endif %}
+  <p>Full name</p>
+  {{ form.full_name }}
+  <p>Nickname</p>
+  {{ form.nickname }}
+  <p>Password</p>
+  {{ form.password }}
+  {{ form.hidden_tag() }}
+  {% if form_type == 'student' %}
+    <p>Brief resume</p>
+    {{ form.brief_resume }}
+  {% else %}
+    <p>Laboratory name</p>
+    {{ form.laboratory }}
+  {% endif %}
+  <br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
