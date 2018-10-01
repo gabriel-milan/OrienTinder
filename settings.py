@@ -12,7 +12,7 @@ CSRF_SECRET_KEY = 'IUUIH@*HA#()RU)(A9102u'
 # Views
 LOGIN_VIEW = 'login'
 
-# General settings
+# Models settings
 MAX_NICKNAME_LENGTH = 20
 MAX_FULLNAME_LENGTH = 50
 MAX_LABORATORY_LENGTH = 100
