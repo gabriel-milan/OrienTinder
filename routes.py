@@ -48,7 +48,7 @@ def register():
             else:
                 existing_user = Professor.objects(nickname=form.nickname.data).first()
             if existing_user is None:
-                if (form.password.data == form.confirm_password.data):
+                if (form.password.data == form.password_confirmation.data):
                     hashpass = generate_password_hash(form.password.data, method='sha256')
                     if form.student.data == True:
                         new_user = Student(nickname = form.nickname.data, password = hashpass, full_name = form.full_name.data, email = form.email.data).save()
