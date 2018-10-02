@@ -32,20 +32,25 @@ def load_student(user_id):
 #   Routes
 #
 
+# Route to homepage
+@app.route('/')
+def homepage():
+    return render_template('index.html')
+
 # Route to the main register page
-@app.route('/register/<userType>', methods = ['GET', 'POST'])
-def register(userType):
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
     form = RegistrationForm()
     if request.method == 'POST':
         if form.validate():
-            if (userType == 'student'):
+            if form.student.data == True:
                 existing_user = Student.objects(nickname=form.nickname.data).first()
             else:
                 existing_user = Professor.objects(nickname=form.nickname.data).first()
             if existing_user is None:
                 if (form.password.data == form.confirm_password.data):
                     hashpass = generate_password_hash(form.password.data, method='sha256')
-                    if (userType == 'student'):
+                    if form.student.data == True:
                         new_user = Student(nickname = form.nickname.data, password = hashpass, full_name = form.full_name.data, email = form.email.data).save()
                     else:
                         new_user = Professor(nickname = form.nickname.data, password = hashpass, full_name = form.full_name.data, email = form.email.data).save()
@@ -57,7 +62,7 @@ def register(userType):
                 error = "User already exists"
         else:
             error = "Form not validated!"
-    return render_template('register.html')
+    return render_template('register.html', form = form)
 
 # Route to the login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -88,3 +93,6 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+if __name__ == '__main__':
+    app.run(host = "0.0.0.0", debug = True)

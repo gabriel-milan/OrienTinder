@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+		<title>
+			Orientinder - Home
+		</title>
+	</head>
+	<body class="body-white">
+		<div class="header-colored">
+			<img class="header-logo" src="{{ url_for('static', filename='images/OrienTinder_Logo.png') }}">
+			<div class="header-right">
+				<a class="active" href="/">Início</a>
+				<a href="/login">Login</a>
+				<a href="/register">Registrar</a>
+			</div>
+        </div>
+        <div class="content-row-white">
+            Você quer muito uma IC?
+            <img class="content-logo content-right" src="{{ url_for('static', filename='images/research.png') }}">
+        </div>
+        <div class="content-row">
+            <img class="content-logo content-left" src="{{ url_for('static', filename='images/stress.png') }}">
+            Mas não tem lugar fácil pra procurar?
+		</div>
+        <div class="content-row-white">
+            Você quer mais um pra sua pesquisa?
+            <img class="content-logo content-right" src="{{ url_for('static', filename='images/find.png') }}">
+		</div>
+        <div class="content-row-no-background">
+            <img class="content-logo content-left" src="{{ url_for('static', filename='images/idea.png') }}">
+			Pensando nessas coisas, surgimos!
+		</div>
+	</body>
+</html>

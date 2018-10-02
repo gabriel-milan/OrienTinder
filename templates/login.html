@@ -1,11 +1,30 @@
-<h1>Login</h1>
-<form action="/login" method="post">
-  <p>Nickname</p>
-  {{ form.nickname }}
-  <p>Password</p>
-  {{ form.password }}
-  {{ form.hidden_tag() }}
-  <br>
-  <br>
-  <input type="submit" value="Login">
-</form>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+		<title>
+			Orientinder - Login
+		</title>
+	</head>
+	<body>
+		<div class="header">
+			<img class="header-logo" src="{{ url_for('static', filename='images/OrienTinder_Logo_White.png') }}">
+			<div class="header-right">
+				<a class="active" href="/">Início</a>
+				<a href="/register">Registrar</a>
+			</div>
+		</div>
+		<div class="login-page">
+			<div class="form">
+				<form class="login-form" action="/login" method="post">
+					<p>Usuário</p>
+					{{ form.nickname }}
+					<p>Senha</p>
+					{{ form.password }}
+					{{ form.hidden_tag() }}
+					<input type="submit" value="Login">
+					<p class="message">Ainda não está registrado? <a href="/register">Crie uma conta!</a></p>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
