@@ -21,12 +21,12 @@ login_manager.init_app(app)
 login_manager.login_view = LOGIN_VIEW
 
 @login_manager.user_loader
-def load_professor(user_id):
-    return Professor.objects(pk=user_id).first()
-
-@login_manager.user_loader
-def load_student(user_id):
-    return Student.objects(pk=user_id).first()
+def load_user(user_id):
+    user = Student.objects(pk=user_id).first()
+    if (user):
+        return user
+    else:
+        return Professor.objects(pk=user_id).first()
 
 #
 #   Routes
@@ -86,6 +86,16 @@ def login():
 @login_required
 def dashboard():
     return render_template('dashboard.html', name=current_user.full_name)
+
+# Route to the new research page
+@app.route('/new-research', methods = ['GET', 'POST'])
+@login_required
+def new_research():
+    try:
+        laboratory = current_user.laboratory
+        return render_template('new_research.html', form = ResearchForm())
+    except:
+        return None # TODO: Return 401 here
 
 # Route to logout
 @app.route('/logout', methods = ['GET'])

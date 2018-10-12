@@ -20,12 +20,17 @@
 			<p>Item 3</p>
 		</div>
 		<div class="main">
-			<h2>
-				Olá {{ name }}!
-			</h2>
-			<h3>
-				Selecione a ação que deseja realizar no menu ao lado.
-			</h3>
+			<div class="form">
+				<form class="login-form" action="/new-research" method="post">
+					<p>Título da pesquisa</p>
+					{{ form.title }}
+					<p>Breve descrição</p>
+					{{ form.description }}
+					<p>Deseja abrir para inscrição imediatamente?</p>
+					{{ form.open_to_subscribe }}
+					<input type="submit" value="Cadastrar">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
