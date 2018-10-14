@@ -2,10 +2,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 		<title>
-			Orientinder - Dashboard
+			Orientinder - {{ title }}
 		</title>
 	</head>
-	<body>
+	{% extends "layout.html" %}
+	{% block body %}
 		<div class="header">
 			<a href="/"><img class="header-logo" src="{{ url_for('static', filename='images/OrienTinder_Logo_White.png') }}"></a>
 			<div class="header-right">
@@ -14,23 +15,32 @@
 			</div>
 		</div>
 		<div class="sidenav">
-			<p><b>Início</b></p>
-			<p>Item 1</p>
-			<p>Item 2</p>
-			<p>Item 3</p>
+			<p><b><a href="/dashboard">Início</a></b></p>
+			{% if user_type == 'professor' %}
+			<p><a href="/new-research">Cadastrar pesquisa</a></p>
+			<p><a href="/researches">Ver/editar pesquisas</a></p>
+			<p><a href="/requests">Ver pedidos</a></p>
+			{% endif %}
+			{% if user_type == 'student' %}
+			<p><a href="/researches">Ver pesquisas abertas</a></p>
+			{% endif %}
 		</div>
 		<div class="main">
 			<div class="form">
+				{% if action == 'register' %}
 				<form class="login-form" action="/new-research" method="post">
+				{% else %}
+				<form class="login-form" action="/edit-research/{{ id }}" method="post">
+				{% endif %}
 					<p>Título da pesquisa</p>
 					{{ form.title }}
 					<p>Breve descrição</p>
 					{{ form.description }}
 					<p>Deseja abrir para inscrição imediatamente?</p>
 					{{ form.open_to_subscribe }}
-					<input type="submit" value="Cadastrar">
+					<input type="submit" value="{{  button_message }}">
 				</form>
 			</div>
 		</div>
-	</body>
+	{% endblock %}
 </html>

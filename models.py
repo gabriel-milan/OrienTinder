@@ -8,17 +8,6 @@ from mongoengine import ReferenceField, ListField
 from wtforms import StringField, BooleanField
 
 #
-#   Research model
-#
-class Research (db.Document):
-    meta = {
-        'collection' : 'Research'
-    }
-    title = db.StringField()
-    description = db.StringField()
-    open_to_subscribe = db.BooleanField()
-
-#
 #   User model
 #
 class User(UserMixin, db.Document):
@@ -30,8 +19,7 @@ class User(UserMixin, db.Document):
     nickname = db.StringField(max_length = MAX_NICKNAME_LENGTH, required = True)
     password = db.StringField(required = True)
     email = db.StringField(required = True)
-    lattes = db.StringField()
-    researches = db.ListField(ReferenceField(Research))
+    lattes = db.StringField(required = True)
 
 #
 #   Student model
@@ -44,3 +32,16 @@ class Student (User):
 #
 class Professor (User):
     laboratory = db.StringField(max_length = MAX_LABORATORY_LENGTH)
+
+#
+#   Research model
+#
+class Research (db.Document):
+    meta = {
+        'collection' : 'Research'
+    }
+    title = db.StringField()
+    description = db.StringField()
+    open_to_subscribe = db.BooleanField()
+    professor = db.StringField()
+    requests = db.ListField()

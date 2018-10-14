@@ -2,7 +2,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 		<title>
-			Orientinder - Dashboard
+			Orientinder - Researches
 		</title>
 	</head>
 	{% extends "layout.html" %}
@@ -26,16 +26,7 @@
 			{% endif %}
 		</div>
 		<div class="main">
-			<h2>
-				Olá {{ name }}!
-			</h2>
-			<h3>
-				{% if missing_lattes %}
-				Por favor acesse a página para editar seu perfil e inclua seu currículo Lattes
-				{% else %}
-				Selecione a ação que deseja realizar no menu ao lado.
-				{% endif %}
-			</h3>
+			{{ table }}
 		</div>
 	{% endblock %}
 </html>

@@ -17,3 +17,10 @@ MAX_NICKNAME_LENGTH = 20
 MAX_FULLNAME_LENGTH = 50
 MAX_LABORATORY_LENGTH = 100
 MIN_PASSWORD_LENGTH = 8
+
+# Types of users
+STUDENT_USER = 11
+PROFESSOR_USER = 12
+
+# Error messages
+HTTP_401_DEFAULT_MESSAGE = 'Você não está autorizado a realizar essa ação!'

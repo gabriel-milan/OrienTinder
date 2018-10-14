@@ -15,6 +15,7 @@ class RegistrationForm (FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min = MIN_PASSWORD_LENGTH)])
     password_confirmation = PasswordField(validators=[InputRequired(), Length(min = MIN_PASSWORD_LENGTH)])
     email = StringField('email', validators=[InputRequired(), Email()])
+    lattes = StringField('lattes', validators=[InputRequired()])
     student = BooleanField()
 
 #
