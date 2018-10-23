@@ -5,7 +5,8 @@
 			Orientinder - Registrar
 		</title>
 	</head>
-	<body>
+	{% extends "layout.html" %}
+	{% block body %}
 		<div class="header">
 			<a href="/"><img class="header-logo" src="{{ url_for('static', filename='images/OrienTinder_Logo_White.png') }}"></a>
 			<div class="header-right">
@@ -36,5 +37,5 @@
 				</form>
 			</div>
 		</div>
-	</body>
+	{% endblock %}
 </html>
